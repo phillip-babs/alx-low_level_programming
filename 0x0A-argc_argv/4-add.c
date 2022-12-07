@@ -5,7 +5,7 @@
  * main - a program that adds positive numbers.
  * @argc: argument counter
  * @argv: argument vector
- * Return; result
+ * Return: result
  */
 
 int main(int argc, char *argv[])

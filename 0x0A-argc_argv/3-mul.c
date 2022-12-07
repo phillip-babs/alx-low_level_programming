@@ -2,8 +2,8 @@
 
 /**
  * main - a program that multiplies two numbers.
- * @argc - argument counter
- * @argv - argument vector
+ * @argc: argument counter
+ * @argv: argument vector
  * Return: result
  */
 
