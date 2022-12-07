@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdblib.h>
+#include <stdlib.h>
 
 /**
  * main - a program that multiplies two numbers.
