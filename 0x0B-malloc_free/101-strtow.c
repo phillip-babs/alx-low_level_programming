@@ -34,7 +34,7 @@ int count_word(char *s)
  * or NULL (Error)
  */
 
-char **strtow(char *str)
+char **strtow(char str)
 {
 	char **matrix, *tmp;
 	int i, k = 0, len = 0, words, c = 0, start, end;

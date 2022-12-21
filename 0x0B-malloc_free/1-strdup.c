@@ -3,12 +3,10 @@
 #include <stdlib.h>
 
 /**
- * _strdup - returns a pointer to a newly allocated space in memory, which contains a copy of the string given as a parameter.
+ * _strdup - returns pointer to new memory, which contains parameter.
  * @str: char
  * Return: 0
  */
-
-		
 
 char *_strdup(char *str)
 {
