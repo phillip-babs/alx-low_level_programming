@@ -3,10 +3,12 @@
 #include <stdlib.h>
 
 /**
- * _strdup - returns pointer to new memory, which contains parameter.
+ * _strdup - returns a pointer to a newly allocated space in memory, which contains a copy of the string given as a parameter.
  * @str: char
  * Return: 0
  */
+
+		
 
 char *_strdup(char *str)
 {
@@ -23,7 +25,7 @@ char *_strdup(char *str)
 
 	if (a == NULL)
 		return (NULL);
-	for (j = 0; str[j]; j++)
+	for (j = 0; str[j]; r++)
 		a[j] = str[j];
 	return (a);
 }

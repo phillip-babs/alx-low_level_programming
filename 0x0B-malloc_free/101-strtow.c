@@ -1,49 +1,73 @@
-#include "main.h"
 #include <stdlib.h>
+#include "main.h"
 
 /**
- * strtow - convert a string into a 2d array of words
- * @str: string to convert
- * Return: double pointer to 2d array
+ *  * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
+ * Return: number of words
+ */
+
+int count_word(char *s)
+{
+	int flag, c, w;
+
+	flag = 0;
+	w = 0;
+
+	for (c = 0; s[c] != '\0'; c++)
+	{
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
+	}
+	return (w);
+
+
+/**
+ * **strtow - splits a string into words
+ * @str: string to split
+ * Return: pointer to an array of strings (Success)
+ * or NULL (Error)
  */
 
 char **strtow(char *str)
 {
-	int wc, wordlen, getfirstchar, len, i, j;
-	char **p;
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
 
-	for (len = 0; str[len]; len++)
-		;
-	if (str == NULL)
+	while (*(str + len))
+		len++;
+
+	words = count_word(str);
+	if (words == 0)
 		return (NULL);
-	wc = wordcounter(str, 0, 0);
-	if (len == 0 || wc == 0)
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
 		return (NULL);
-	p = malloc((wc + 1) * sizeof(void *));
-	if (p == NULL)
-		return (NULL);
-	for (i = 0, wordlen = 0; i < wc; i++)
+	for (i = 0; i <= len; i++)
 	{
-		wordlen = wordcounter(str, i + 1, 0);
-		if (i == 0 && str[i] != ' ')
-			wordlen++;
-		p[i] = malloc(wordlen * sizeof(char) + 1);
-		if (p[i] == NULL)
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			for ( ; i >= 0; --i)
-				free(p[i]);
-			free(p);
-			return (NULL);
+			if (c)
+			{
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
+			}
+			else if (c++ == 0)
+				start = i;
 		}
-		getfirstchar = wordcounter(str, i + 1, 1);
-		if (str[0] != ' ' && i > 0)
-			getfirstchar++;
-		else if (str[0] == ' ')
-			getfirstchar++;
-		for (j = 0; j < wordlen; j++)
-			p[i][j] = str[getfirstchar + j];
-		p[i][j] = '\0';
-	}
-	p[i] = NULL;
-	return (p);
+		matrix[k] = NULL;
+		return (matrix);
 }
